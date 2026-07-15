@@ -6,6 +6,9 @@ public class ScoreBoard {
     private int draws = 0;
 
     public void record(int result) {
+
+
+=======
         if (result == 1) {
           	player1Wins++;
         }else if (result == 2) {
