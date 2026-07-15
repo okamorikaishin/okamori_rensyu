@@ -58,27 +58,7 @@ public class Player {
         }
     }
     
-    public int judge(Hand myHand, Hand opponentHand) {
-        if (myHand == opponentHand) {
-            return 0;
-        }
-
-        if (myHand == Hand.ROCK && opponentHand == Hand.SCISSORS) {
-            return 1;
-        }
-        if (myHand == Hand.SCISSORS && opponentHand == Hand.PAPER) {
-            return 1;
-        }
-        if (myHand == Hand.PAPER && opponentHand == Hand.ROCK) {
-            return 1;
-        }
-
-        return 2;
-    }
-    
-    // 自分の手(myHand)と相手の手(opponentHand)を比較して勝敗を判定
-    // 戻り値: 1=自分の勝ち, 2=相手の勝ち, 0=あいこ
-
+   
     public String getName() {
         return name;
     }
