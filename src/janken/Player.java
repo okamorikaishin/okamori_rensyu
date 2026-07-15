@@ -5,60 +5,22 @@ import java.util.Scanner;
 
 public class Player {
     private String name;
-    private boolean CPU;
-    
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final Random random = new Random();
 
     public Player(String name) {
-        this(name, false);
-    }
-    
-    public Player(String name, boolean CPU) {
-    	this.name = name;
-    	this.CPU = CPU;
-    }
-    
-    public Hand chooseHand() {
-        if (CPU) {
-            return chooseHandCPU();
-        } else {
-            return chooseHandHuman();
-        }
-    }
-    
-    private Hand chooseHandHuman() {
-    		while (true) { System.out.print(name + "さん、手を選んでください (1:グー, 2:チョキ, 3:パー): ");
-            String input = scanner.nextLine();
-
-            switch (input) {
-                case "1":
-                    return Hand.ROCK;
-                case "2":
-                    return Hand.SCISSORS;
-                case "3":
-                    return Hand.PAPER;
-                default:
-                    System.out.println("入力が不正です。1〜3の数字を入力してください。");
-            }
-    			
-    		}
-        
+        this.name = name;
     }
 
-    private Hand chooseHandCPU() {
-        int r = random.nextInt(3);
-        switch (r) {
-            case 0:
-                return Hand.ROCK;
-            case 1:
-                return Hand.SCISSORS;
-            default:
-                return Hand.PAPER;
-        }
+    // 手を選ぶロジック(人間ならコンソール入力、CPUならランダム)
+    public Hand chooseHand(int number) {
+        // 実装はAさんにお任せ
+        return Hand.ROCK; // 仮
     }
+<<<<<<< HEAD
     
    
+=======
+
+>>>>>>> 80559d3e7771225bf1cee7844e5190b8f2016d2d
     public String getName() {
         return name;
     }
