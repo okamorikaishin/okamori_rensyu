@@ -8,7 +8,7 @@ public class Player {
     }
 
     // 手を選ぶロジック(人間ならコンソール入力、CPUならランダム)
-    public Hand chooseHand() {
+    public Hand chooseHand(int number) {
         // 実装はAさんにお任せ
         return Hand.ROCK; // 仮
     }
