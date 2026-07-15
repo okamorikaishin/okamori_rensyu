@@ -20,8 +20,8 @@ public class Main {
         		System.out.print("どの手を出す?：");
         		int number = sc.nextInt();
         		System.out.println();
-            Hand hand1 = player1.chooseHand(number);
-            Hand hand2 = player2.chooseHand(number);
+            Hand hand1 = player1.chooseHandHuman(number);
+            Hand hand2 = player2.chooseHandCPU();
 
             int result = game.judge(hand1, hand2);
             scoreBoard.record(result);
