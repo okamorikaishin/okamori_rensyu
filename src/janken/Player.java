@@ -15,7 +15,12 @@ public class Player {
         // 実装はAさんにお任せ
         return Hand.ROCK; // 仮
     }
+<<<<<<< HEAD
+    
+   
+=======
 
+>>>>>>> 80559d3e7771225bf1cee7844e5190b8f2016d2d
     public String getName() {
         return name;
     }
