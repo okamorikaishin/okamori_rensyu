@@ -40,5 +40,7 @@ public class Main {
 
         scoreBoard.display();
         sc.close();
+
+     
     }
 }
