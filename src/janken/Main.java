@@ -23,9 +23,34 @@ public class Main {
 
         //ゲームの繰り返し処理(プレイヤーが0を選んだら終了)
         while (con==1) {
-        		System.out.println("~"+i+"回戦~");
+        		
+        		
+        		int currentStreak = 0;
+        		
+        		if (scoreBoard.getCurrentStreakPlayer() == 1) {
+                    currentStreak = scoreBoard.getCurrentStreakCount();
+                }
+        		
+        		if (currentStreak >= 5) {
+        			player2.setName("八田與一");
+        		}else if(currentStreak == 4) {
+        			player2.setName("高市早苗");
+        		}else if(currentStreak == 3) {
+        			player2.setName("ケイスケホンダ");
+        		}else if(currentStreak == 2) {
+        			player2.setName("サザエさん");
+        		}else if(currentStreak == 1) {
+        			player2.setName("シャンクス");
+        		}else {
+        			player2.setName("じゃんけんニキ");
+        		}
+        		
+        		
+        		
+        		System.out.println("~"+i+"回戦 VS " + player2.getName()+"~");
         		i+=1;//対戦回数の追加
         		System.out.println();
+        		 
         		System.out.println("1:グー, 2:チョキ, 3:パー");
         		System.out.print("どの手を出す?：");
         		int number = sc.nextInt();//スキャナーの呼び出し(プレイヤー出したい手を受け取る)
