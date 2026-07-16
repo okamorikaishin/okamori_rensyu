@@ -67,12 +67,6 @@ public class Main {
         		System.out.println("~"+i+"回戦 VS " + player2.getName()+"~");
         		i+=1;//対戦回数の追加
         		System.out.println();
-<<<<<<< HEAD
-        		 
-        		System.out.println("1:グー, 2:チョキ, 3:パー");
-        		System.out.print("どの手を出す?：");
-        		int number = sc.nextInt();//スキャナーの呼び出し(プレイヤー出したい手を受け取る)
-=======
 
 //        		これを追加してほしいです
         		System.out.println("所持金: " + playerMoney.getMoney() + "円");
@@ -89,7 +83,7 @@ public class Main {
                 }
 
         		String hand1 = null;
->>>>>>> 7b2bc9207c6e5ef1db1951cdce5f92e1c69e9cb6
+
         		System.out.println();
 
 
