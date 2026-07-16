@@ -1,8 +1,15 @@
 package janken;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 public class PlayerMoney {
 
     private int money;
+    private static final String SAVE_FILE = "money.properties";
 
     public PlayerMoney(int initialMoney) {
         this.money = initialMoney;
@@ -37,5 +44,34 @@ public class PlayerMoney {
 //     引き分けの時の処理（ベット額を返す）
     public void draw(int betMoney) {
         money += betMoney;
+    }
+    
+//    ファイルに保存する
+    public void save() {
+        Properties prop = new Properties();
+        prop.setProperty("money", String.valueOf(money));
+
+        try (FileOutputStream out = new FileOutputStream(SAVE_FILE)) {
+            prop.store(out, "Player Money Data");
+        } catch (IOException e) {
+            System.out.println("所持金の保存に失敗しました: " + e.getMessage());
+        }
+    }
+    
+//    ファイルを読み込む
+    public void load() {
+        Properties prop = new Properties();
+
+        try (FileInputStream in = new FileInputStream(SAVE_FILE)) {
+            prop.load(in);
+            String savedMoney = prop.getProperty("money");
+            if (savedMoney != null) {
+                money = Integer.parseInt(savedMoney);
+            }
+        } catch (FileNotFoundException e) {
+            // ファイルがまだない場合は何もしない（初回起動時）
+        } catch (IOException e) {
+            System.out.println("所持金の読み込みに失敗しました: " + e.getMessage());
+        }
     }
 }

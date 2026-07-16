@@ -11,6 +11,9 @@ public class Main {
         ScoreBoard scoreBoard = new ScoreBoard();//ScoreBoardクラスのインスタンス生成
 //        これを追加してほしいです
         PlayerMoney playerMoney = new PlayerMoney(1000); // 初期所持金1000
+//        前回のファイルを読み込む
+        scoreBoard.load();
+        playerMoney.load();
         
         int con = 1;//継続判定変数conを定義
         int i =1;//対戦回数カウント用の変数iを定義
@@ -116,6 +119,10 @@ public class Main {
         	 * 試合結果の表示
         	 */
         scoreBoard.display();
+        
+//        記録を保存する
+        scoreBoard.save();
+        playerMoney.save();
         
         sc.close();//スキャナーの終了
 
