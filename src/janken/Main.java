@@ -30,7 +30,7 @@ public class Main {
             
             System.out.println();
             
-            System.out.println("　　　　　　 DRAW");
+            System.out.println("　　　　　　 "+game.judgeResultString(hand1, hand2));
             
             System.out.println();
             
