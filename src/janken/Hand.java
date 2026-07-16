@@ -1,5 +1,5 @@
 package janken;
 
 public enum Hand {
-    ROCK, SCISSORS, PAPER;
+    ROCK, SCISSORS, PAPER
 }
