@@ -9,6 +9,14 @@ public class ScoreBoard {
     private int currentStreakPlayer = 0; // 0:なし, 1:Player1, 2:Player2(CPU)
     private int currentStreakCount = 0;
     private int maxStreakPlayer1 = 0;
+    
+    public int getCurrentStreakPlayer() {
+    	  return currentStreakPlayer;
+    }
+    
+    public int getCurrentStreakCount() {
+    	  return currentStreakCount;
+    }
 
     public void record(int result) {
         if (result == 1) {
@@ -43,13 +51,11 @@ public class ScoreBoard {
 
         if (total > 0) {
             double winRateP1 = (double) player1Wins / total * 100;
-            System.out.println("勝率: " + winRateP1);
+            System.out.println("勝率: " + String.format("%.1f", winRateP1) + "%");
         }
 
         System.out.println("Player1 最大連勝: " + maxStreakPlayer1 + "連勝");
 
-        if (currentStreakPlayer == 1 && currentStreakCount > 0) {
-            System.out.println("現在 " + currentStreakCount + "連勝中！");
-        }
+        
     }
 }

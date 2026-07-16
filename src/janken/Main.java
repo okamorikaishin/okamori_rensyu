@@ -30,19 +30,11 @@ public class Main {
         		System.out.print("どの手を出す?：");
         		int number = sc.nextInt();//スキャナーの呼び出し(プレイヤー出したい手を受け取る)
         		System.out.println();
-<<<<<<< HEAD
+
             String hand1 = player1.chooseHandHuman(number);
             String hand2 = player2.chooseHandCPU();
 
             int result = game.judge(hand1, hand2);
-            scoreBoard.record(result);
-
-            System.out.println(player1.getName() + ": " + hand1+ " vs " + player2.getName() + ": " + hand2);
-=======
-            Hand hand1 = player1.chooseHandHuman(number);//プレイヤーの入力をじゃんけんの手に変換するメソッド
-            Hand hand2 = player2.chooseHandCPU();//コンピューターの出した手を呼び出し
-
-            int result = game.judge(hand1, hand2);//勝敗判定の呼び出し(0~2)
             scoreBoard.record(result);//スコアに結果を記載
             
             /*
@@ -56,7 +48,6 @@ public class Main {
             }
             
             System.out.println(player1.getName() + ": " + hand1 + " vs " + player2.getName() + ": " + hand2);
->>>>>>> 51dcb2c2c18997061dbfc5709d379a82503b3c54
             
             System.out.println();
             
@@ -67,7 +58,6 @@ public class Main {
             }
             
             System.out.println("　　　　　　 "+game.judgeResultString(hand1, hand2));//勝敗判定の呼び出し(文字列)
-            
             System.out.println();
             
             /*
@@ -78,6 +68,9 @@ public class Main {
             	Thread.sleep(1500);//1.5秒のディレイ
             }catch(InterruptedException e){
             		e.printStackTrace();
+            }
+            if (scoreBoard.getCurrentStreakPlayer() == 1 ) {
+                System.out.println("現在 " + scoreBoard.getCurrentStreakCount() + "連勝中！");
             }
             
             System.out.println("　　　　　　　　　　　　　続けますか?");
@@ -91,7 +84,6 @@ public class Main {
         	/*
         	 * 試合結果の表示
         	 */
-        
         scoreBoard.display();
         
         sc.close();//スキャナーの終了
