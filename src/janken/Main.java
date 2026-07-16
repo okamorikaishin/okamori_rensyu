@@ -20,13 +20,13 @@ public class Main {
         		System.out.print("どの手を出す?：");
         		int number = sc.nextInt();
         		System.out.println();
-            Hand hand1 = player1.chooseHandHuman(number);
-            Hand hand2 = player2.chooseHandCPU();
+            String hand1 = player1.chooseHandHuman(number);
+            String hand2 = player2.chooseHandCPU();
 
             int result = game.judge(hand1, hand2);
             scoreBoard.record(result);
 
-            System.out.println(player1.getName() + ": " + hand1 + " vs " + player2.getName() + ": " + hand2);
+            System.out.println(player1.getName() + ": " + hand1+ " vs " + player2.getName() + ": " + hand2);
             
             System.out.println();
             

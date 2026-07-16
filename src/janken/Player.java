@@ -3,6 +3,9 @@ package janken;
 import java.util.Random;
 
 public class Player {
+	
+	public static final String[] HANDS = {"ROCK","SCISSORS", "PAPER"};
+	
     private String name;
     
     private static final Random random = new Random();
@@ -12,14 +15,14 @@ public class Player {
     }
 
     
-    public Hand chooseHandHuman(int number) {
+    public String chooseHandHuman(int number) {
             switch (number) {
                 case 1:
-                    return Hand.ROCK;
+                    return HANDS[0];
                 case 2:
-                    return Hand.SCISSORS;
+                    return HANDS[1];
                 case 3:
-                    return Hand.PAPER;
+                    return HANDS[2];
                 default:
                    return null;
             }
@@ -27,15 +30,15 @@ public class Player {
     		}
         
 
-    public Hand chooseHandCPU() {
+    public String chooseHandCPU() {
         int r = random.nextInt(3);
         switch (r) {
             case 0:
-                return Hand.ROCK;
+                return HANDS[0];
             case 1:
-                return Hand.SCISSORS;
+                return HANDS[1];
             default:
-                return Hand.PAPER;
+                return HANDS[2];
         }
     }
     
