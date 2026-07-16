@@ -10,6 +10,8 @@ public class Main {
         Player player2 = new Player("Player2");//player2(CPU)のインスタンス生成
         Game game = new Game();//Gameクラスのインスタンス生成
         ScoreBoard scoreBoard = new ScoreBoard();//ScoreBoardクラスのインスタンス生成
+//        これを追加してほしいです
+        PlayerMoney playerMoney = new PlayerMoney(1000); // 初期所持金1000
         
         int con = 1;//継続判定変数conを定義
         int i =1;//対戦回数カウント用の変数iを定義
@@ -28,7 +30,22 @@ public class Main {
         		i+=1;//対戦回数の追加
         		System.out.println();
 
+//        		これを追加してほしいです
+        		System.out.println("所持金: " + playerMoney.getMoney() + "円");
+//        		掛け金
+        		int betAmount;
+        		
+                while (true) {
+                    System.out.print("ベット額を入力してください：");
+                    betAmount = sc.nextInt();
+                    if (playerMoney.bet(betAmount)) {
+                        break; // ベット成功
+                    }
+                    System.out.println("ベット額が不正です（所持金以下、かつ1円以上にしてください）");
+                }
+
         		String hand1 = null;
+        		System.out.println();
 
         		// 正しい手(1〜3)が選ばれるまで繰り返し聞く
         		while (hand1 == null) {
@@ -40,6 +57,7 @@ public class Main {
         				hand1 = player1.chooseHandHuman(number);
 
         				if (hand1 == null) {
+        					System.out.println();
         					System.out.println("1〜3の数字を入力してください。");
         					System.out.println();
         				}
@@ -56,6 +74,14 @@ public class Main {
 
             int result = game.judge(hand1, hand2);
             scoreBoard.record(result);//スコアに結果を記載
+            
+//            これ追加してほしいです
+            // ベット結果の反映
+            if (result == 1) {
+                playerMoney.win(betAmount);
+            } else if (result == 0) {
+                playerMoney.draw(betAmount);
+            }
             
             /*
              *じゃんけん結果の表示 
@@ -91,6 +117,13 @@ public class Main {
             }
             if (scoreBoard.getCurrentStreakPlayer() == 1 ) {
                 System.out.println("現在 " + scoreBoard.getCurrentStreakCount() + "連勝中！");
+            }
+            
+//            これ追加してほしいです
+         // 所持金が0になったら強制終了
+            if (playerMoney.getMoney() <= 0) {
+                System.out.println("所持金がなくなりました。ゲーム終了です。");
+                break;
             }
             
             System.out.println("　　　　　　　　　　　　　続けますか?");
