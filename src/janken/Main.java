@@ -1,5 +1,6 @@
 package janken;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -26,12 +27,31 @@ public class Main {
         		System.out.println("~"+i+"回戦~");
         		i+=1;//対戦回数の追加
         		System.out.println();
-        		System.out.println("1:グー, 2:チョキ, 3:パー");
-        		System.out.print("どの手を出す?：");
-        		int number = sc.nextInt();//スキャナーの呼び出し(プレイヤー出したい手を受け取る)
-        		System.out.println();
 
-            String hand1 = player1.chooseHandHuman(number);
+        		String hand1 = null;
+
+        		// 正しい手(1〜3)が選ばれるまで繰り返し聞く
+        		while (hand1 == null) {
+        			System.out.println("1:グー, 2:チョキ, 3:パー");
+        			System.out.print("どの手を出す?：");
+
+        			try {
+        				int number = sc.nextInt();//スキャナーの呼び出し(プレイヤー出したい手を受け取る)
+        				hand1 = player1.chooseHandHuman(number);
+
+        				if (hand1 == null) {
+        					System.out.println("1〜3の数字を入力してください。");
+        					System.out.println();
+        				}
+        			} catch (InputMismatchException e) {
+        				System.out.println("数字を入力してください。");
+        				System.out.println();
+        				sc.nextLine(); // 不正な入力を読み捨てる
+        			}
+        		}
+
+        		System.out.println();
+        		
             String hand2 = player2.chooseHandCPU();
 
             int result = game.judge(hand1, hand2);
