@@ -14,6 +14,9 @@ public class Player {
         this.name=name;
     }
 
+    public void setName(String name) {
+  	  this.name = name;
+    }
     
     public String chooseHandHuman(int number) {
             switch (number) {
@@ -46,4 +49,5 @@ public class Player {
     public String getName() {
         return name;
     }
-}
+   
+    }
