@@ -5,16 +5,33 @@ public class ScoreBoard {
     private int player2Wins = 0;
     private int draws = 0;
 
+    // 連勝記録用
+    private int currentStreakPlayer = 0; // 0:なし, 1:Player1, 2:Player2(CPU)
+    private int currentStreakCount = 0;
+    private int maxStreakPlayer1 = 0;
+
     public void record(int result) {
+        if (result == 1) {
+            player1Wins++;
+        } else if (result == 2) {
+            player2Wins++;
+        } else {
+            draws++;
+        }
 
+        updateStreak(result);
+    }
 
+    private void updateStreak(int result) {
+        if (result == currentStreakPlayer) {
+            currentStreakCount++;
+        } else {
+            currentStreakPlayer = result;
+            currentStreakCount = (result == 1 || result == 2) ? 1 : 0;
+        }
 
         if (result == 1) {
-          	player1Wins++;
-        }else if (result == 2) {
-         	player2Wins++;
-        }else {
-         	draws++;
+            maxStreakPlayer1 = Math.max(maxStreakPlayer1, currentStreakCount);
         }
     }
 
@@ -23,9 +40,16 @@ public class ScoreBoard {
         System.out.println("Player1: " + player1Wins + "勝");
         System.out.println("Player2: " + player2Wins + "勝");
         System.out.println("引き分け: " + draws + "回");
+
         if (total > 0) {
-            double winRate = (player1Wins / total) * 100;
-            System.out.println(winRate);
+            double winRateP1 = (double) player1Wins / total * 100;
+            System.out.println("勝率: " + winRateP1);
+        }
+
+        System.out.println("Player1 最大連勝: " + maxStreakPlayer1 + "連勝");
+
+        if (currentStreakPlayer == 1 && currentStreakCount > 0) {
+            System.out.println("現在 " + currentStreakCount + "連勝中！");
         }
     }
 }
