@@ -1,5 +1,11 @@
 package janken;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 public class ScoreBoard {
     private int player1Wins = 0;
     private int player2Wins = 0;
@@ -9,6 +15,8 @@ public class ScoreBoard {
     private int currentStreakPlayer = 0; // 0:なし, 1:Player1, 2:Player2(CPU)
     private int currentStreakCount = 0;
     private int maxStreakPlayer1 = 0;
+//    スコアを保存するファイル
+    private static final String SAVE_FILE = "scoreboard.properties";
     
     public int getCurrentStreakPlayer() {
     	  return currentStreakPlayer;
@@ -57,5 +65,36 @@ public class ScoreBoard {
         System.out.println("Player1 最大連勝: " + maxStreakPlayer1 + "連勝");
 
         
+    }
+//    ファイルに保存する
+    public void save() {
+        Properties prop = new Properties();
+        prop.setProperty("player1Wins", String.valueOf(player1Wins));
+        prop.setProperty("player2Wins", String.valueOf(player2Wins));
+        prop.setProperty("draws", String.valueOf(draws));
+        prop.setProperty("maxStreakPlayer1", String.valueOf(maxStreakPlayer1));
+
+        try (FileOutputStream out = new FileOutputStream(SAVE_FILE)) {
+            prop.store(out, "ScoreBoard Data");
+        } catch (IOException e) {
+            System.out.println("スコアの保存に失敗しました: " + e.getMessage());
+        }
+    }
+    
+//    ファイルを読むこむ
+    public void load() {
+        Properties prop = new Properties();
+
+        try (FileInputStream in = new FileInputStream(SAVE_FILE)) {
+            prop.load(in);
+            player1Wins = Integer.parseInt(prop.getProperty("player1Wins", "0"));
+            player2Wins = Integer.parseInt(prop.getProperty("player2Wins", "0"));
+            draws = Integer.parseInt(prop.getProperty("draws", "0"));
+            maxStreakPlayer1 = Integer.parseInt(prop.getProperty("maxStreakPlayer1", "0"));
+        } catch (FileNotFoundException e) {
+            // 初回起動時は何もしない
+        } catch (IOException e) {
+            System.out.println("スコアの読み込みに失敗しました: " + e.getMessage());
+        }
     }
 }
