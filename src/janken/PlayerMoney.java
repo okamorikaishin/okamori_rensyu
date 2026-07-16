@@ -46,6 +46,10 @@ public class PlayerMoney {
         money += betMoney;
     }
     
+    public void reset(int amount) {
+        this.money = amount;
+    }
+    
 //    ファイルに保存する
     public void save() {
         Properties prop = new Properties();

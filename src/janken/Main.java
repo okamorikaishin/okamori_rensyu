@@ -159,8 +159,8 @@ public class Main {
 //            これ追加してほしいです
          // 所持金が0になったら強制終了
             if (playerMoney.getMoney() <= 0) {
-                System.out.println("所持金がなくなりました。ゲーム終了です。");
-                break;
+                System.out.println("所持金がありません。1000円からリスタートします。");
+                playerMoney.reset(1000); // PlayerMoneyに新しいメソッドを追加する必要あり
             }
             
             System.out.println("　　　　　　　　　　　　　続けますか?");
